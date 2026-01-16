@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>Wi-Fi QR Code 產生器</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <h1 class="app-title">Wi-Fi QR Code 產生器</h1>
+      <p class="app-subtitle">
+        輸入 SSID、加密方式與密碼，即可產生可被 iPhone / Android 掃描的 Wi-Fi QR Code。
+      </p>
+    </header>
+
+    <main class="app-main">
+      <section class="panel">
+        <h2 class="panel-title">輸入 Wi-Fi 資訊</h2>
+
+        <div class="form">
+          <div class="field">
+            <label for="ssidInput">Wi-Fi 名稱（SSID）<span class="required">*</span></label>
+            <input
+              type="text"
+              id="ssidInput"
+              placeholder="例：MyHomeWiFi"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="field">
+            <label for="encryptionSelect">加密方式<span class="required">*</span></label>
+            <select id="encryptionSelect">
+              <option value="WPA" selected>WPA / WPA2 / WPA3</option>
+              <option value="WEP">WEP</option>
+              <option value="nopass">無密碼（開放熱點）</option>
+            </select>
+          </div>
+
+          <div class="field" id="passwordField">
+            <label for="passwordInput">Wi-Fi 密碼<span class="required">*</span></label>
+            <input
+              type="text"
+              id="passwordInput"
+              placeholder="請輸入 Wi-Fi 密碼"
+              autocomplete="off"
+            />
+          </div>
+
+          <button id="generateBtn" class="btn-primary">
+            產生 QR Code
+          </button>
+
+          <p id="formError" class="form-error"></p>
+        </div>
+      </section>
+
+      <section class="panel panel-qr">
+        <h2 class="panel-title">QR Code 預覽</h2>
+
+        <div id="qrContainer" class="qr-container">
+          <div id="qrcode" class="qrcode-placeholder">
+            <span class="qr-placeholder-text">尚未產生 QR Code</span>
+          </div>
+        </div>
+
+        <p class="hint">
+          使用手機相機 / QR 掃描 App 掃描後，可以直接加入 Wi-Fi。
+        </p>
+
+        <details class="advanced">
+          <summary>顯示 Wi-Fi QR 文字內容（除錯 / 進階用途）</summary>
+          <pre id="wifiStringPreview" class="wifi-string-preview"></pre>
+        </details>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>前端純靜態工具 · 適用於教室 / 辦公室 / 分享 Wi-Fi 使用</span>
+    </footer>
+  </div>
+
+  <!-- QRCode library（CDN） -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- 主程式 -->
+  <script src="app.js"></script>
+</body>
+</html>
